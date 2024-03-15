@@ -1,3 +1,4 @@
+/* Сбросил стили по умолчанию, хоть и подключил normalize.css */
 * {
     box-sizing: border-box;
     text-decoration: none;
@@ -7,8 +8,15 @@
     font-family: 'Merriweather', Courier, monospace;
 }
 
+/* Плавная прокрутка*/
+html {
+    scroll-behavior: smooth;
+}
+
+/* Контейнер обертка */
 .container {
     width: 1366px;
+    padding: 0 72px 0 72px;
     margin: 0 auto;
 }
 
@@ -16,18 +24,93 @@ header {
     position: relative;
     height: 700px;
     background-image: url(../img/background.png);
+    background-repeat: no-repeat;
 }
 
+/* 
+Здесь я создал wrapper для слайдера карточек под мобилку так-как верстал с позиции desktop first и сделал дизайн карточек на основе Grid ничего умнее я не придумал как вырубить слайдер в десктоп версии, и показывать в мобильной, соответственно вырубив основную grid обертку =)
+*/
+.mobile-slider-cards {
+    display: none;
+}
+
+/* 
+Здесь тоже возможно мой подход и не правильный, но задачу он выполняет, я так и не смог скачать background со всеми элементами. Скачал каждый элемент по отдельности и задав им z-index расположил pixel-perfect как в макете. На самом деле первый раз вижу что бы дизайнер так сильно усложнил жизнь верстальщику =)
+
+Здесь начало картинок с абсолютным позиционированием
+*/
+.chess {
+    position: absolute;
+    top: 166px;
+    left: 1307px;
+    z-index: 1;
+}
+
+.chess-two {
+    position: absolute;
+    top: 270px;
+    left: 976px;
+    z-index: 1;
+}
+
+.horse {
+    position: absolute;
+    top: 482px;
+    left: 1083px;
+    z-index: 3;
+}
+
+.tweet {
+    position: absolute;
+    top: 557px;
+    left: 1485px;
+    z-index: 3;
+}
+
+.city {
+    position: absolute;
+    top: 270px;
+    left: 130px;
+    z-index: 2;
+}
+
+.ellipse {
+    position: absolute;
+    top: 0px;
+    left: 920px;
+}
+
+.ellipse-text {
+    position: absolute;
+    top: 0px;
+    left: 865px;
+    z-index: 1;
+    opacity: 0.1;
+}
+
+.path {
+    position: absolute;
+    top: 259px;
+    left: 126px;
+    z-index: 2;
+}
+/* 
+а это конец 
+*/
+
 .header-logo {
-    margin-left: 72px;
     margin-top: 26px;
+}
+
+/* Здесь я добавил перенос строки в кнопке на десктоп версии */
+.desktop-break {
+    display: block;
 }
 
 .header-title h1 {
     font-family: 'Merriweather', Courier, monospace;
     text-transform: uppercase;
     margin: 0;
-    margin-left: 72px;
     margin-top: 58px;
     font-size: 60px;
     font-weight: 400;
@@ -38,7 +121,7 @@ header {
     font-family: 'Merriweather', Courier, monospace;
     text-transform: uppercase;
     margin: 0;
-    margin-left: 163px;
+    margin-left: 91px;
     font-size: 60px;
     font-weight: 400;
     line-height: 66px;
@@ -48,7 +131,7 @@ header {
     font-family: 'Merriweather', Courier, monospace;
     text-transform: uppercase;
     margin: 0;
-    margin-left: 105px;
+    margin-left: 34px;
     font-size: 60px;
     font-weight: 400;
     line-height: 66px;
@@ -61,7 +144,6 @@ header {
     font-weight: 400;
     line-height: 23.4px;
     max-width: 542px;
-    margin-left: 72px;
     margin-top: 24px;
     text-align: center;
     max-height: 46px;
@@ -70,14 +152,16 @@ header {
 .header-button__wrapper {
     margin: 0;
     margin-top: 40px;
-    margin-left: 72px;
     display: flex;
     flex-direction: row;
 }
 
-.btn-left {
+.head-btn-left {
+    text-align: center;
+    padding: 15px;
     width: 263px;
     height: 72px;
+    line-height: 72px;
     font-family: 'Golos Text', Courier, monospace;
     font-weight: 500;
     font-size: 16px;
@@ -88,14 +172,18 @@ header {
     border-radius: 60px;
     margin-right: 16px;
     transition: background-color 0.3s ease;
+    z-index: 99;
 }
 
-.btn-left:hover {
+.head-btn-left:hover {
+    cursor: pointer;
     background-color: rgba(251, 206, 81, 1);
     color: black;
 }
 
-.btn-right {
+.head-btn-right {
+    text-align: center;
+    padding: 15px;
     width: 263px;
     height: 72px;
     font-family: 'Golos Text', Courier, monospace;
@@ -107,9 +195,11 @@ header {
     border: 2px solid black;
     border-radius: 50px;
     transition: background-color 0.3s ease;
+    z-index: 99;
 }
 
-.btn-right:hover {
+.head-btn-right:hover {
+    cursor: pointer;
     background-color: black;
     color: white;
 }
@@ -117,19 +207,9 @@ header {
 .creeping-line {
     height: 60px;
     background-color: rgba(245, 73, 50, 1);
-}
-
-.creeping-line-list {
     display: flex;
-    flex-direction: row;
-}
-
-.creeping-line-list li {
-    font-family: 'Merriweather', Courier, monospace;
-    font-weight: 400;
-    font-size: 22px;
-    color: white;
-    text-transform: uppercase;
+    align-items: center;
+    overflow: hidden;
 }
 
 .main-title-section {
@@ -138,7 +218,7 @@ header {
     margin-bottom: 64px;
 }
 
-.main-title-section h3 {
+.title-one {
     font-family: 'Merriweather', Courier, monospace;
     margin: 0;
     max-width: 764px;
@@ -147,18 +227,37 @@ header {
     font-weight: 400;
     line-height: 48.6px;
     text-transform: uppercase;
-    margin-left: 72px;
     margin-top: 106.92px;
 }
 
-.main-title-section span {
+.title-two-dektop span {
     margin: 0;
     font-weight: 700;
     line-height: 48.6px;
     color: rgba(245, 73, 50, 1);
 }
 
-.main-title-section img {
+.title-two {
+    display: none;
+    font-family: 'Merriweather', Courier, monospace;
+    margin: 0;
+    max-width: 764px;
+    margin-top: 80px;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 48.6px;
+    text-transform: uppercase;
+    margin-top: 106.92px;
+}
+
+.title-two span {
+    margin: 0;
+    font-weight: 700;
+    line-height: 48.6px;
+    color: rgba(245, 73, 50, 1);
+}
+
+.title-img {
     max-width: 394px;
     max-height: 250px;
     border-radius: 50%;
@@ -172,7 +271,6 @@ header {
 }
 
 .about__image {
-    margin-left: 72px;
     width: 474px;
     height: 527px;
 }
@@ -231,6 +329,7 @@ header {
 .about-table span {
     font-family: 'Golos Text', Courier, monospace;
     color: black;
+    font-weight: 600;
     text-decoration: line-through;
     text-decoration-color: red;
     margin-right: 6px;
@@ -246,6 +345,1068 @@ header {
     margin-left: 44px;
 }
 
+.stages-section {
+    margin-top: 198px;
+}
+
+.mobile-slider-cards-wrapper,
+.mobile-slider__btn-wrapper,
+.tournament-mobile-container {
+    display: none;
+}
+.stages-section-title {
+    max-width: 806px;
+    font-family: 'Merriweather', Courier, monospace;
+    line-height: 64.8px;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 54px;
+    margin-bottom: 6px;
+}
+
+.stages-section-title::after {
+    position: relative;
+    bottom: 59px;
+    left: 301px;
+    display: block;
+    max-width: 280px;
+    content: 'Будущие источники обогащения васюкинцев';
+    font-family: 'Golos Text', Courier, monospace;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    color: rgba(48, 87, 162, 1);
+    text-transform: none;
+}
+
+.stages-section__cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 2fr;
+    grid-template-rows: repeat(2, 1fr) 1.5fr 0 0fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+.card-1 {
+    position: relative;
+    max-width: 394px;
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.card-2 {
+    position: relative;
+    grid-area: 1 / 3 / 2 / 5;
+}
+.card-3 {
+    position: relative;
+    grid-area: 1 / 5 / 3 / 6;
+}
+.card-4 {
+    position: relative;
+    grid-area: 2 / 1 / 3 / 3;
+}
+.card-5 {
+    position: relative;
+    grid-area: 2 / 3 / 3 / 5;
+}
+.card-6 {
+    position: relative;
+    grid-area: 3 / 1 / 4 / 3;
+}
+.card-7 {
+    position: relative;
+    grid-area: 3 / 3 / 4 / 6;
+}
+.card-7 p {
+    max-width: 446px;
+}
+
+.card-1::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: '1';
+    width: 36px;
+    height: 36px;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.card-2::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: '2';
+    width: 36px;
+    height: 36px;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.card-3::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: '3';
+    width: 36px;
+    height: 36px;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.card-4::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: '4';
+    width: 36px;
+    height: 36px;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.card-5::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: '5';
+    width: 36px;
+    height: 36px;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.card-6::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: '6';
+    width: 36px;
+    height: 36px;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.card-7::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    content: '7';
+    width: 36px;
+    height: 36px;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    background-color: white;
+    border-radius: 50px;
+}
+.stages-section__card {
+    box-sizing: border-box;
+    padding-bottom: 5px;
+    background-image: url(../img/background.png);
+}
+
+.stages-section__card p {
+    margin: 20px 20px 0px 72px;
+    font-family: 'Golos Text', Courier, monospace;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.card-fly {
+    position: absolute;
+    bottom: 15px;
+    left: 460px;
+    z-index: 10;
+}
+
+.card-fly-mobile {
+    display: none;
+}
+
+.tournament {
+    margin-top: 180px;
+}
+
+.tournament-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tournament-wrapper h5 {
+    font-family: 'Merriweather', Courier, monospace;
+    line-height: 64.8px;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 54px;
+}
+
+.tournament-slider {
+    margin-top: 60px;
+    overflow: hidden;
+}
+
+.tournament-slider-one {
+    display: flex;
+    justify-content: space-around;
+}
+
+.tournament-slider-two {
+    display: flex;
+    justify-content: space-around;
+}
+
+.tournament__participants {
+    text-align: center;
+}
+
+#btn-carousel {
+    transform: rotate(180deg);
+}
+
+#btn-carousel:hover circle,
+#btn-carousel-right:hover circle {
+    fill: rgba(251, 206, 81, 1);
+}
+
+.tournament__participants h6 {
+    margin-top: 25px;
+    font-family: 'Golos Text', Courier, monospace;
+    font-size: 24px;
+    line-height: 28.8px;
+    font-weight: 600;
+}
+
+.tournament__participants p {
+    margin-top: 6px;
+    font-family: 'Golos Text', Courier, monospace;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    color: rgba(49, 49, 49, 0.6);
+}
+
+.tournament__participants button {
+    margin-top: 20px;
+    font-family: 'Golos Text', Courier, monospace;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    color: rgba(49, 49, 49, 0.6);
+}
+
+.tournament__participants button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgba(48, 87, 162, 1);
+}
+
+.tournament-carousel__btn-wrapper {
+    display: flex;
+}
+
+.btn-carousel-right {
+    transform: rotate(180deg);
+}
+
+.tournament__participants button {
+    height: 35px;
+    padding: 0 12px 0 12px;
+    background-color: transparent;
+    border: 1px solid rgba(48, 87, 162, 1);
+    font-family: 'Golos Text', Courier, monospace;
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 500;
+    color: rgba(48, 87, 162, 1);
+    border-radius: 62px;
+}
+
+.carousel-counter {
+    font-family: 'Golos Text', Courier, monospace;
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 400;
+    margin: 0 16.5px 0 20px;
+    text-align: center;
+    align-self: center;
+}
+
+/* Анимация слайдера влево */
+@keyframes slide-in-from-left {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Анимация слайдера вправо */
+@keyframes slide-in-from-right {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+.slide-in-left {
+    animation: slide-in-from-left 0.5s ease-out;
+}
+.slide-in-right {
+    animation: slide-in-from-right 0.5s ease-out;
+}
+
+.creeping-line-two {
+    width: 100%;
+    height: 60px;
+    background-color: rgba(245, 73, 50, 1);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.creeping-line-list-two {
+    white-space: nowrap;
+}
+
+.creeping-line-text {
+    display: inline-block;
+    font-family: 'Merriweather', Courier, monospace;
+    font-weight: 400;
+    font-size: 22px;
+    color: white;
+    text-transform: uppercase;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.footer-text {
+    max-width: 1222px;
+    margin-top: 40px;
+    margin-left: 72px;
+    font-family: 'Golos Text', Courier, monospace;
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 400;
+    color: rgba(49, 49, 49, 0.6);
+}
+
+.footer-container {
+    width: 1366px;
+    margin: 0 auto;
+}
+
+.footer {
+    margin-top: 140px;
+    height: 210px;
+}
+
 footer {
     background-color: rgba(233, 222, 212, 1);
+}
+
+@media only screen and (max-width: 1366px) {
+    .chess {
+        position: absolute;
+        top: 165px;
+        left: 1060px;
+        z-index: 1;
+    }
+
+    .chess-two {
+        position: absolute;
+        top: 270px;
+        left: 729px;
+        z-index: 1;
+    }
+
+    .horse {
+        position: absolute;
+        top: 482px;
+        left: 836px;
+        z-index: 3;
+    }
+
+    .tweet {
+        position: absolute;
+        top: 557px;
+        left: 1238px;
+        z-index: 3;
+    }
+
+    .city {
+        position: absolute;
+        top: 270px;
+        left: -116px;
+        z-index: 2;
+    }
+
+    .ellipse {
+        position: absolute;
+        top: 0px;
+        left: 674px;
+    }
+
+    .ellipse-text {
+        position: absolute;
+        top: 0px;
+        left: 615px;
+        z-index: 1;
+        opacity: 0.1;
+    }
+
+    .path {
+        position: absolute;
+        top: 259px;
+        left: -121px;
+        z-index: 2;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .container {
+        width: 375px;
+        padding: 0 19px 0 19px;
+        margin: 0 auto;
+    }
+
+    .desktop-break {
+        display: none;
+    }
+
+    .mobile-slider-cards-wrapper,
+    .mobile-slider__btn-wrapper,
+    .tournament-mobile-container {
+        display: block;
+    }
+
+    .header-logo {
+        max-width: 213px;
+        margin-top: 18px;
+    }
+
+    .header-title h1 {
+        margin-top: 40px;
+        font-size: 36px;
+        line-height: 39.6px;
+    }
+
+    .header-title h2 {
+        margin-left: 65px;
+        font-size: 36px;
+        line-height: 39.6px;
+    }
+
+    .header-title h3 {
+        margin-left: 30px;
+        font-size: 36px;
+        line-height: 39.6px;
+    }
+
+    .header-title p {
+        font-size: 18px;
+        line-height: 23.4px;
+        margin-top: 23px;
+        text-align: left;
+    }
+
+    .header-button__wrapper {
+        flex-direction: column;
+        margin-top: 54px;
+    }
+
+    .head-btn-left {
+        width: 100%;
+        height: 47px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20.8px;
+        text-align: center;
+    }
+
+    .head-btn-right {
+        margin-top: 15px;
+        width: 100%;
+        height: 47px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20.8px;
+        text-align: center;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .chess {
+        display: none;
+    }
+
+    .chess-two {
+        display: none;
+    }
+
+    .horse {
+        display: none;
+    }
+
+    .tweet {
+        display: none;
+    }
+
+    .city {
+        display: none;
+    }
+
+    .ellipse {
+        display: none;
+    }
+
+    .ellipse-text {
+        display: none;
+    }
+
+    .path {
+        display: none;
+    }
+
+    header {
+        height: 774px;
+        position: relative;
+        background-image: url(../img/bkg375.png);
+        background-repeat: no-repeat;
+    }
+    .creeping-line {
+        max-height: 38px;
+    }
+
+    .creeping-line-text {
+        font-size: 16px;
+        line-height: 17.6px;
+        font-weight: 400;
+    }
+
+    .main-title-section {
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title-one {
+        order: 1;
+        margin-top: 48px;
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 37.8px;
+        text-transform: uppercase;
+    }
+
+    .title-two-dektop {
+        display: none;
+    }
+
+    .title-two {
+        display: block;
+        order: 3;
+        margin-top: 25px;
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 37.8px;
+        text-transform: uppercase;
+    }
+
+    .title-two span {
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 37.8px;
+        text-transform: uppercase;
+    }
+
+    .title-img {
+        margin: 0;
+        order: 2;
+        margin-top: 24px;
+    }
+
+    .about {
+        flex-direction: column;
+    }
+
+    .about__image {
+        width: 335px;
+        height: auto;
+        margin-top: 34px;
+    }
+
+    .about__title h3 {
+        margin: 0;
+        width: 100%;
+        margin-top: 38px;
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 37.8px;
+    }
+
+    .about__title h3 span {
+        display: inline-block;
+        font-weight: 700;
+        line-height: 38px;
+    }
+
+    .about-table {
+        margin: 0;
+        margin-top: 28px;
+        border-collapse: collapse;
+    }
+    .about-table tr:nth-child(4) th,
+    .about-table tr:nth-child(4) td {
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .about-table tr:nth-child(4) td {
+        margin-left: -150px;
+        margin-top: 8px;
+    }
+
+    .about-table th,
+    .about-table td {
+        display: block;
+        border-left: none;
+        border-right: none;
+    }
+
+    .about-table td {
+        margin: 0;
+        margin-top: -4px;
+        margin-bottom: 10px;
+        padding: 4px 0 3px 0;
+    }
+
+    .about-table tr:nth-child(5) td {
+        margin-top: -19px;
+    }
+
+    .about-info {
+        margin: 0;
+        margin-top: 16px;
+        font-size: 18px;
+        line-height: 21.6px;
+    }
+
+    .stages-section {
+        margin-top: 122px;
+    }
+
+    .stages-section-title {
+        line-height: 39.6px;
+        font-weight: 400;
+        font-size: 36px;
+        margin-bottom: 160px;
+    }
+    .stages-section-title::after {
+        bottom: 0px;
+        left: 0px;
+        top: 12px;
+        font-size: 18px;
+        line-height: 21.6px;
+        max-width: 100%;
+    }
+
+    .stages-section__cards {
+        display: none;
+    }
+
+    .mobile-slider-cards-wrapper {
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+    }
+
+    .mobile-slider__card {
+        display: flex;
+        flex-direction: column;
+        background: url(../img/background.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 335px;
+        height: 300px;
+    }
+
+    .card-fly-mobile {
+        display: block;
+    }
+
+    .card-fly-mobile {
+        position: absolute;
+        width: 335px;
+        z-index: 10;
+        top: 2947px;
+        left: 30px;
+        transform: rotate(-3deg);
+    }
+
+    .mobile-slider__card-text {
+        position: relative;
+        margin-left: 72px;
+        margin-top: 64px;
+        font-family: 'Golos Text', Courier, monospace;
+        font-size: 18px;
+        line-height: 21.6px;
+        font-weight: 500;
+        width: 239px;
+    }
+
+    .mobile-text-1::before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: '1';
+        width: 36px;
+        height: 36px;
+        right: 255px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        background-color: white;
+        border-radius: 50px;
+    }
+    .mobile-text-2::before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: '2';
+        width: 36px;
+        height: 36px;
+        right: 255px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        background-color: white;
+        border-radius: 50px;
+    }
+
+    .mobile-text-3::before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: '3';
+        width: 36px;
+        height: 36px;
+        right: 255px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        background-color: white;
+        border-radius: 50px;
+    }
+
+    .mobile-text-4::before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: '4';
+        width: 36px;
+        height: 36px;
+        right: 255px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        background-color: white;
+        border-radius: 50px;
+    }
+
+    .mobile-text-5::before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: '5';
+        width: 36px;
+        height: 36px;
+        right: 255px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        background-color: white;
+        border-radius: 50px;
+    }
+
+    .mobile-text-6::before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: '6';
+        width: 36px;
+        height: 36px;
+        right: 255px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        background-color: white;
+        border-radius: 50px;
+    }
+
+    .mobile-text-7::before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: '7';
+        width: 36px;
+        height: 36px;
+        right: 255px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        background-color: white;
+        border-radius: 50px;
+    }
+
+    .mobile-text-bottom {
+        margin-top: 29px;
+    }
+
+    .mobile-slider__btn-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 28px;
+    }
+
+    .mobile-slider-counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        margin: 0 16px 0 16px;
+    }
+
+    .mobile-slider-counter li {
+        margin-right: 6px;
+    }
+
+    .slide-indicator {
+        fill: #d9d9d9;
+    }
+
+    .slide-indicator.active {
+        fill: #313131;
+    }
+
+    #mobile-slider-left {
+        transform: rotate(180deg);
+    }
+
+    @keyframes slide-in-right {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-in-left {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    .mobile-slider__card.slide-in-right {
+        animation: slide-in-right 0.5s ease-in-out forwards;
+    }
+
+    .mobile-slider__card.slide-in-left {
+        animation: slide-in-left 0.5s ease-in-out forwards;
+    }
+
+    .tournament {
+        margin-top: 120px;
+    }
+
+    .tournament-desktop-container {
+        display: none;
+    }
+
+    .tournament-mobile-container {
+        text-align: center;
+    }
+
+    .mobile-cards-carousel {
+        display: flex;
+        overflow: hidden;
+    }
+
+    .tournament__participants-mobile {
+        margin: 0 auto;
+    }
+
+    .tournament-mobile-container h5 {
+        text-align: left;
+        font-family: 'Merriweather', Courier, monospace;
+        line-height: 39.6px;
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 36px;
+    }
+
+    .tournament__participants-mobile img {
+        margin-top: 40px;
+        width: 244px;
+    }
+
+    .tournament__participants-mobile h6 {
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 26px;
+        font-family: 'Golos Text', Courier, monospace;
+        font-size: 24px;
+        line-height: 28.8px;
+        font-weight: 600;
+    }
+
+    .tournament__participants-mobile p {
+        text-align: center;
+        margin-top: 8px;
+        font-family: 'Golos Text', Courier, monospace;
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 400;
+        color: rgba(49, 49, 49, 0.6);
+    }
+
+    .tournament__participants-mobile button {
+        margin-top: 20px;
+        width: 113px;
+        height: 35px;
+        border-radius: 20px;
+        font-family: 'Golos Text', Courier, monospace;
+        font-size: 16px;
+        line-height: 19.2px;
+        font-weight: 500;
+        color: rgba(48, 87, 162, 1);
+        border: 1px solid rgba(48, 87, 162, 1);
+    }
+
+    .tournament-carousel__btn-wrapper-mobile {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    #btn-carousel-mobile {
+        transform: rotate(180deg);
+    }
+
+    .carousel-counter-mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 16px 0 16px;
+    }
+
+    /* Анимация слайдера влево */
+    @keyframes carousel-card-left {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    /* Анимация слайдера вправо */
+    @keyframes carousel-card-right {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    .carousel-card-left {
+        animation: slide-in-from-left 0.5s ease-out;
+    }
+
+    .carousel-card-right {
+        animation: slide-in-from-right 0.5s ease-out;
+    }
+
+    .creeping-line-two {
+        margin-top: 96px;
+        height: 38px;
+    }
+
+    .footer-container {
+        width: 375px;
+        margin: 0 auto;
+    }
+
+    .footer-text {
+        margin-left: 20px;
+        max-width: 335px;
+    }
+
+    .footer {
+        height: 252px;
+    }
 }
