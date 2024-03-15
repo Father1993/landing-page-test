@@ -23,7 +23,7 @@ html {
 header {
     position: relative;
     height: 700px;
-    background-image: url(../img/background.png);
+    background-image: url(../img/background.webp);
     background-repeat: no-repeat;
 }
 
@@ -542,7 +542,7 @@ header {
 .stages-section__card {
     box-sizing: border-box;
     padding-bottom: 5px;
-    background-image: url(../img/background.png);
+    background-image: url(../img/background.webp);
 }
 
 .stages-section__card p {
@@ -923,7 +923,7 @@ footer {
     header {
         height: 774px;
         position: relative;
-        background-image: url(../img/bkg375.png);
+        background-image: url(../img/bkg375.webp);
         background-repeat: no-repeat;
     }
     .creeping-line {
@@ -1076,7 +1076,7 @@ footer {
     .mobile-slider__card {
         display: flex;
         flex-direction: column;
-        background: url(../img/background.png);
+        background: url(../img/background.webp);
         background-repeat: no-repeat;
         background-size: cover;
         width: 335px;
